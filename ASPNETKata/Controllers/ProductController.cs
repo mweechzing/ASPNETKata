@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
+using ASPNETKata.Models;
+using Dapper;
+using MySql.Data.MySqlClient;
 
 namespace ASPNETKata.Views
 {
@@ -11,7 +17,13 @@ namespace ASPNETKata.Views
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            var ConnectionString = "Server=localhost;Database=Adventureworks;Vid=root;Pwd=password";
+            using (var con = new MySqlConnection(ConnectionString))
+            {
+                con.Open();
+                var list = con.Query<Product>("*Select* from VAR in Product");
+                return View(list);
+            }
         }
 
         // GET: Product/Details/5
