@@ -42,14 +42,14 @@ namespace ASPNETKata.Views
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-
+            var name = collection["Name"];
             var ConnectionString = "Server=localhost;Database=Adventureworks;Vid=root;Pwd=password";
             using (var con = new MySqlConnection(ConnectionString))
             {
                 con.Open();
                 try
                 {
-                    con.Execute()//type in a sql statenebnt, create a string and then add a second to prevent sql
+                    con.Execute("INSERT into Product (Name) Values (@Name)", new { Name = name});
 
                     return RedirectToAction("Index");
                 }
