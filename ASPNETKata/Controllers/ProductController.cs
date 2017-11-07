@@ -42,16 +42,23 @@ namespace ASPNETKata.Views
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var ConnectionString = "Server=localhost;Database=Adventureworks;Vid=root;Pwd=password";
+            using (var con = new MySqlConnection(ConnectionString))
             {
-                return View();
+                con.Open();
+                try
+                {
+                    con.Execute()//type in a sql statenebnt, create a string and then add a second to prevent sql
+
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
+            
         }
 
         // GET: Product/Edit/5

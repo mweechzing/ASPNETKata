@@ -1,0 +1,72 @@
+﻿@model ASPNETKata.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reload)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reload)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDev)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
