@@ -17,11 +17,11 @@ namespace ASPNETKata.Views
         // GET: Product
         public ActionResult Index()
         {
-            var ConnectionString = "Server=localhost;Database=Adventureworks;Vid=root;Pwd=password";
+            var ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
             using (var con = new MySqlConnection(ConnectionString))
             {
                 con.Open();
-                var list = con.Query<Product>("*Select* from VAR in Product");
+                var list = con.Query<Product>("Select * from Product");
                 return View(list);
             }
         }
@@ -43,7 +43,7 @@ namespace ASPNETKata.Views
         public ActionResult Create(FormCollection collection)
         {
             var name = collection["Name"];
-            var ConnectionString = "Server=localhost;Database=Adventureworks;Vid=root;Pwd=password";
+            var ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
             using (var con = new MySqlConnection(ConnectionString))
             {
                 con.Open();
